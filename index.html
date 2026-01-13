@@ -151,17 +151,17 @@ footer {
   gap: 32px;
 }
 
-/* CSS PIXEL GIRL */
 .pixel-girl {
-  width: 8px;
-  height: 8px;
+  width: 1em;
+  height: 1em;
+  font-size: 1px;           /* KEY FIX */
   transform: scale(6);
   image-rendering: pixelated;
   background: transparent;
   margin-left: auto;
 
   box-shadow:
-    /* hair (pink) */
+    /* hair */
     1em 0em #f4a3c4, 2em 0em #f4a3c4, 3em 0em #f4a3c4,
     0em 1em #f4a3c4, 1em 1em #f4a3c4, 2em 1em #f4a3c4, 3em 1em #f4a3c4, 4em 1em #f4a3c4,
     0em 2em #f4a3c4, 1em 2em #f4a3c4, 2em 2em #ffd6e6, 3em 2em #ffd6e6, 4em 2em #f4a3c4,
@@ -173,18 +173,6 @@ footer {
     /* body */
     2em 5em #e07a1f, 3em 5em #e07a1f,
     2em 6em #3a3326, 3em 6em #3a3326;
-}
-
-/* MOBILE */
-@media (max-width: 700px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .pixel-girl {
-    margin: 24px auto 0;
-  }
 }
 </style>
 </head>
