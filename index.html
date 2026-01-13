@@ -9,12 +9,12 @@
 
   <style>
     :root {
-      --bg: #D8C7A3;
-      --card: #E3D5B8;
+      --bg: #3A3326;          /* dark dirty tan */
+      --card: #4A4232;
       --accent: #E07A1F;
       --accent-dark: #B85C00;
-      --text: #2B2118;
-      --muted: #5A4A3A;
+      --text: #EFE6D2;
+      --muted: #C2B59B;
     }
 
     * {
@@ -40,12 +40,12 @@
     }
 
     a {
-      color: var(--accent-dark);
+      color: var(--accent);
       text-decoration: none;
     }
 
     a:hover {
-      text-decoration: underline;
+      color: var(--accent-dark);
     }
 
     .container {
@@ -54,11 +54,21 @@
       padding: 64px 24px;
     }
 
-    .hero {
-      border: 3px solid var(--accent);
-      padding: 32px;
-      margin-bottom: 48px;
+    /* Pixel-rounded style */
+    .pixel-box {
       background: var(--card);
+      border: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow:
+        3px 0 0 0 var(--accent),
+        0 3px 0 0 var(--accent),
+        -3px 0 0 0 var(--accent),
+        0 -3px 0 0 var(--accent);
+    }
+
+    .hero {
+      margin-bottom: 48px;
     }
 
     .hero h1 {
@@ -72,9 +82,11 @@
     .section-title {
       font-size: 14px;
       margin-bottom: 24px;
-      border-bottom: 3px solid var(--accent);
-      padding-bottom: 12px;
       display: inline-block;
+      padding: 8px 12px;
+      background: var(--card);
+      border: 3px solid var(--accent);
+      border-radius: 6px;
     }
 
     .grid {
@@ -86,12 +98,14 @@
     .card {
       background: var(--card);
       border: 3px solid var(--accent);
+      border-radius: 8px;
       padding: 24px;
-      transition: border-color 0.15s ease;
+      transition: transform 0.12s ease, border-color 0.12s ease;
     }
 
     .card:hover {
       border-color: var(--accent-dark);
+      transform: translate(-2px, -2px);
     }
 
     .card h3 {
@@ -100,15 +114,10 @@
     }
 
     footer {
-      border-top: 3px solid var(--accent);
-      padding-top: 24px;
       margin-top: 64px;
+      padding-top: 24px;
+      border-top: 3px solid var(--accent);
       font-size: 14px;
-    }
-
-    /* Pixel feel */
-    body {
-      image-rendering: pixelated;
     }
   </style>
 </head>
@@ -116,12 +125,12 @@
 
   <div class="container">
 
-    <section class="hero">
+    <section class="hero pixel-box">
       <h1>YOUR NAME</h1>
       <p>Developer · Builder · Problem Solver</p>
       <p>
-        I design and build clean, reliable software.
-        Focused on backend systems, APIs, and practical tools.
+        I build reliable software with a focus on clean systems,
+        long-term support, and practical engineering.
       </p>
     </section>
 
@@ -130,15 +139,15 @@
       <div class="grid">
         <div class="card">
           <h3>Project One</h3>
-          <p>Short description of what it does and why it matters.</p>
+          <p>What it does. Why it matters.</p>
         </div>
         <div class="card">
           <h3>Project Two</h3>
-          <p>Short description of what it does and why it matters.</p>
+          <p>What it does. Why it matters.</p>
         </div>
         <div class="card">
           <h3>Project Three</h3>
-          <p>Short description of what it does and why it matters.</p>
+          <p>What it does. Why it matters.</p>
         </div>
       </div>
     </section>
