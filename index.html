@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Profile | Aesthetic</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500&display=swap" rel="stylesheet">
+    <title>Portfolio | Dark Amber</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
     <style>
+        /* --- CSS STYLES --- */
         :root {
-            --bg-gradient: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-            --glass-bg: rgba(255, 255, 255, 0.4);
-            --text-main: #2d3436;
-            --accent: #6c5ce7;
+            --bg-deep: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --amber-bright: #ffbf00;
+            --amber-dim: #b38600;
+            --text-gray: #a0a0a0;
+            --text-light: #e0e0e0;
         }
 
         * {
@@ -20,155 +23,251 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-gradient);
-            background-attachment: fixed;
-            height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-light);
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: var(--text-main);
-            overflow: hidden;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        .profile-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 30px;
-            padding: 3rem;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            
+        /* Wider Layout */
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-radius: 24px;
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
         }
 
-        .profile-card.visible {
+        .container.loaded {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .avatar-container {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 1.5rem;
+        /* Profile Sidebar */
+        .profile-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: #fff;
-            padding: 5px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .avatar:hover {
-            transform: scale(1.05) rotate(3deg);
+            width: 100px;
+            height: 100px;
+            border-radius: 18px;
+            background: linear-gradient(45deg, #222, #333);
+            margin-bottom: 1.5rem;
+            border: 1px solid #444;
         }
 
         h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 500;
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
+            color: var(--amber-bright);
         }
 
-        p.bio {
+        .status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--amber-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .description {
+            color: var(--text-gray);
+            line-height: 1.7;
             font-size: 0.95rem;
-            color: #636e72;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            font-weight: 300;
         }
 
-        .links {
+        /* Projects & Social Grid */
+        .content-side {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 2rem;
         }
 
-        .link-item {
+        .section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #555;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Animated Border Buttons */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .animated-btn {
+            position: relative;
+            background: #111;
+            padding: 1px; /* The "border" width */
+            border-radius: 12px;
             text-decoration: none;
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.6);
-            padding: 12px;
-            border-radius: 15px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
+            overflow: hidden;
+            display: block;
         }
 
-        .link-item:hover {
-            background: #fff;
-            transform: translateX(5px);
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .blob {
+        /* The moving gradient border */
+        .animated-btn::before {
+            content: '';
             position: absolute;
-            z-index: -1;
-            background: white;
-            filter: blur(50px);
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: float 10s infinite alternate;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, var(--amber-bright));
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        @keyframes float {
-            from { transform: translate(0, 0); }
-            to { transform: translate(30px, 50px); }
+        .animated-btn:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(1turn); }
+        }
+
+        .btn-inner {
+            background: var(--card-bg);
+            padding: 16px 20px;
+            border-radius: 11px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-light);
+            transition: background 0.3s;
+        }
+
+        .animated-btn:hover .btn-inner {
+            background: #222;
+        }
+
+        .btn-inner span:last-child {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--amber-dim);
+        }
+
+        .social-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--amber-bright);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+                gap: 2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="blob" style="width: 300px; height: 300px; top: 10%; left: 10%;"></div>
-    <div class="blob" style="width: 200px; height: 200px; bottom: 10%; right: 10%; background: #a29bfe;"></div>
-
-    <div class="profile-card" id="profileCard">
-        <div class="avatar-container">
-            <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Felix" alt="Avatar" class="avatar">
+    <div class="container" id="mainContainer">
+        <div class="profile-side">
+            <div class="avatar">
+                <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Dark" alt="avatar" style="width:100%; height:100%; padding:10px;">
+            </div>
+            <h1>A. Vance</h1>
+            <div class="status">System Architect</div>
+            <p class="description">
+                Focused on building robust backend systems and high-performance web interfaces. I prefer deep blacks, sharp lines, and amber accents. 
+                <br><br>
+                Currently exploring low-latency architecture and high-fidelity UI design.
+            </p>
         </div>
-        
-        <h1>Your Name</h1>
-        <p class="bio">Digital Creator & Minimalist. Currently exploring the intersection of design and code. Coffee enthusiast.</p>
 
-        <div class="links">
-            <a href="#" class="link-item">Portfolio</a>
-            <a href="#" class="link-item">Twitter / X</a>
-            <a href="#" class="link-item">Read my Blog</a>
-            <a href="#" class="link-item">Contact</a>
+        <div class="content-side">
+            <div>
+                <span class="section-title">Selected Projects</span>
+                <div class="btn-grid">
+                    <a href="#" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>Neural Grid System</span>
+                            <span>01 / 2024</span>
+                        </div>
+                    </a>
+                    <a href="#" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>Vapor Engine v2</span>
+                            <span>05 / 2024</span>
+                        </div>
+                    </a>
+                    <a href="#" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>Amber Analytics</span>
+                            <span>11 / 2025</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <span class="section-title">Connect</span>
+                <div class="social-row">
+                    <a href="#" class="social-link">GitHub</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">Discord</a>
+                    <a href="#" class="social-link">Email</a>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        /* --- JAVASCRIPT --- */
         window.addEventListener('DOMContentLoaded', () => {
-            const card = document.getElementById('profileCard');
-            
+            // Trigger entry animation
+            const container = document.getElementById('mainContainer');
             setTimeout(() => {
-                card.classList.add('visible');
-            }, 300);
+                container.classList.add('loaded');
+            }, 100);
 
-            document.addEventListener('mousemove', (e) => {
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                card.style.transform = `translateY(0) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            });
-
-            document.addEventListener('mouseleave', () => {
-                card.style.transform = `translateY(0) rotateY(0) rotateX(0)`;
-            });
+            // Subtle "Breathing" effect on the amber text
+            const amberText = document.querySelector('h1');
+            let brightness = 1;
+            setInterval(() => {
+                brightness = brightness === 1 ? 0.8 : 1;
+                amberText.style.transition = 'opacity 2s ease-in-out';
+                amberText.style.opacity = brightness;
+            }, 2000);
         });
     </script>
 </body>
