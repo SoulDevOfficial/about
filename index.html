@@ -1,232 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Hello!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Profile | Aesthetic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --text-main: #2d3436;
+            --accent: #6c5ce7;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-:root {
-  --bg: #3A3326;
-  --card: #4A4232;
-  --accent: #E07A1F;
-  --accent-dark: #B85C00;
-  --text: #EFE6D2;
-  --muted: #C2B59B;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            overflow: hidden;
+        }
 
-/* RESET */
-* { box-sizing: border-box; }
+        .profile-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 30px;
+            padding: 3rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
 
-body {
-  margin: 0;
-  font-family: Inter, sans-serif;
-  color: var(--text);
-  background-color: var(--bg);
-  overflow-x: hidden;
-}
+        .profile-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-/* PIXEL ANIMATED BACKGROUND */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.02) 0px,
-      rgba(255,255,255,0.02) 2px,
-      transparent 2px,
-      transparent 6px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(0,0,0,0.04) 0px,
-      rgba(0,0,0,0.04) 2px,
-      transparent 2px,
-      transparent 6px
-    );
-  animation: pixel-drift 6s steps(20) infinite;
-}
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+        }
 
-@keyframes pixel-drift {
-  0%   { background-position: 0 0, 0 0; }
-  100% { background-position: 40px 40px, -40px -40px; }
-}
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #fff;
+            padding: 5px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-/* TYPOGRAPHY */
-h1, h2, h3 {
-  font-family: "Press Start 2P", monospace;
-  line-height: 1.5;
-  margin: 0 0 16px;
-}
+        .avatar:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
 
-p {
-  margin: 0 0 16px;
-  color: var(--muted);
-}
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
+        p.bio {
+            font-size: 0.95rem;
+            color: #636e72;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
 
-a:hover { color: var(--accent-dark); }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-/* LAYOUT */
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 64px 24px;
-}
+        .link-item {
+            text-decoration: none;
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.6);
+            padding: 12px;
+            border-radius: 15px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
 
-/* PIXEL BOX */
-.pixel-box {
-  background: var(--card);
-  border: 3px solid var(--accent);
-  border-radius: 8px;
-  padding: 24px;
-}
+        .link-item:hover {
+            background: #fff;
+            transform: translateX(5px);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
 
-/* HERO */
-.hero { margin-bottom: 48px; }
-.hero h1 { font-size: 20px; }
+        .blob {
+            position: absolute;
+            z-index: -1;
+            background: white;
+            filter: blur(50px);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 10s infinite alternate;
+        }
 
-/* SECTIONS */
-.section { margin-bottom: 56px; }
-
-.section-title {
-  font-size: 14px;
-  padding: 8px 12px;
-  display: inline-block;
-  background: var(--card);
-  border: 3px solid var(--accent);
-  border-radius: 6px;
-  margin-bottom: 24px;
-}
-
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-}
-
-.card {
-  background: var(--card);
-  border: 3px solid var(--accent);
-  border-radius: 8px;
-  padding: 24px;
-  transition: transform 0.12s steps(2), border-color 0.12s;
-}
-
-.card:hover {
-  border-color: var(--accent-dark);
-  transform: translate(-2px, -2px);
-}
-
-.card h3 {
-  font-size: 12px;
-  margin-bottom: 12px;
-}
-
-/* FOOTER */
-footer {
-  margin-top: 64px;
-  padding-top: 24px;
-  border-top: 3px solid var(--accent);
-  font-size: 14px;
-}
-
-/* FOOTER LAYOUT WITH IMAGE */
-.footer-content {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 32px;
-}
-
-/* Pixel girl image with bounce */
-.pixel-girl {
-  width: 140px;
-  height: auto;
-  image-rendering: pixelated;
-  border: 3px solid var(--accent);
-  border-radius: 8px;
-  background: var(--card);
-
-  /* Bounce animation */
-  animation: bounce 2s ease-in-out infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-/* MOBILE */
-@media (max-width: 700px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .pixel-girl {
-    margin: 24px auto 0;
-  }
-}
-</style>
+        @keyframes float {
+            from { transform: translate(0, 0); }
+            to { transform: translate(30px, 50px); }
+        }
+    </style>
 </head>
-
 <body>
-<div class="container">
 
-  <section class="hero pixel-box">
-    <h1>Soul</h1>
-    <p>Developer · Designer</p>
-    <p>Hey! Thanks for checking out my profile! I'm a small-time developer specializing in making fun and useful tools for Discord and game developers! Below are some recent projects of mine and friends!</p>
-  </section>
+    <div class="blob" style="width: 300px; height: 300px; top: 10%; left: 10%;"></div>
+    <div class="blob" style="width: 200px; height: 200px; bottom: 10%; right: 10%; background: #a29bfe;"></div>
 
-  <section class="section">
-    <h2 class="section-title">Projects</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>LabsUtility</h3>
-        <p>Useful utility bot for Discord users! Currently still under development and testing!</p>
-      </div>
-      <div class="card">
-        <h3>Aeros</h3>
-        <p>Program that "hacks the hackers" - Not public</p>
-      </div>
+    <div class="profile-card" id="profileCard">
+        <div class="avatar-container">
+            <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Felix" alt="Avatar" class="avatar">
+        </div>
+        
+        <h1>Your Name</h1>
+        <p class="bio">Digital Creator & Minimalist. Currently exploring the intersection of design and code. Coffee enthusiast.</p>
+
+        <div class="links">
+            <a href="#" class="link-item">Portfolio</a>
+            <a href="#" class="link-item">Twitter / X</a>
+            <a href="#" class="link-item">Read my Blog</a>
+            <a href="#" class="link-item">Contact</a>
+        </div>
     </div>
-  </section>
 
-  <section class="section">
-    <h2 class="section-title">Worked With</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>SeedLoaf</h3>
-        <p>Free and powerful MC server hosting!</p>
-      </div>
-      <div class="card">
-        <h3>Vertex</h3>
-        <p>A unique multi-purpose bot that actually works!</p>
-      </div>
-    </div>
-  </section>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const card = document.getElementById('profileCard');
+            
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, 300);
 
-  <footer>
-    <div class="footer-content">
-      <div>
-        <p>Contact: <a href="mailto:developing.soulnet@gmail.com">developing.soulnet@gmail.com</a></p>
-        <p><a href="https://github.com/SoulDevOfficial">GitHub</a> · <a href="https://discord.com/users/1254195552808206429">Discord</a></p>
-      </div>
-      <img src="https://github.com/SoulDevOfficial/me/blob/e5942db61d933d45f60df0fe786b41bd2d3eaaf6/IMG_9997.png" alt="Pixel anime girl with pink hair" class="pixel-girl" />
-    </div>
-  </footer>
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                card.style.transform = `translateY(0) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
 
-</div>
+            document.addEventListener('mouseleave', () => {
+                card.style.transform = `translateY(0) rotateY(0) rotateX(0)`;
+            });
+        });
+    </script>
 </body>
 </html>
