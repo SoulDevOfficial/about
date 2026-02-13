@@ -96,13 +96,27 @@
             gap: 2rem;
         }
 
+        /* Category Header with connected line */
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
         .section-title {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
             color: var(--text-white);
             text-transform: uppercase;
-            margin-bottom: 1rem;
-            display: block;
+            white-space: nowrap;
+            letter-spacing: 1px;
+        }
+
+        .header-line {
+            flex-grow: 1;
+            height: 1px;
+            background: #2a2a2a;
         }
 
         .btn-grid {
@@ -168,7 +182,7 @@
         .link-row {
             display: flex;
             gap: 15px;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .nav-link {
@@ -199,7 +213,7 @@
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
-                padding: 2rem;
+                padding: 2.5rem;
                 gap: 2rem;
             }
         }
@@ -221,7 +235,25 @@
 
         <div class="content-side">
             <div>
-                <span class="section-title">🗁 Supported Projects</span>
+                <div class="category-header">
+                    <span class="section-title">Learn More</span>
+                    <div class="header-line"></div>
+                </div>
+                <div class="btn-grid">
+                    <a href="portfolio" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>🗁 Pages</span>
+                            <span>Portfolio</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <div class="category-header">
+                    <span class="section-title">🗁 Supported Projects</span>
+                    <div class="header-line"></div>
+                </div>
                 <div class="btn-grid">
                     <a href="https://seedloaf.com" class="animated-btn">
                         <div class="btn-inner">
@@ -245,19 +277,15 @@
             </div>
 
             <div>
-                <span class="section-title">⊰ Connect ⊱</span>
+                <div class="category-header">
+                    <span class="section-title">⊰ Connect ⊱</span>
+                    <div class="header-line"></div>
+                </div>
                 <div class="link-row">
                     <a href="https://github.com/SoulDevOfficial" class="nav-link">GitHub</a>
                     <a href="https://x.com/Soul132830" class="nav-link">Twitter</a>
                     <a href="https://discord.com/users/1254195552808206429" class="nav-link">Discord</a>
                     <a href="mailto:developing.soulnet@gmail.com" class="nav-link">Email</a>
-                </div>
-            </div>
-
-            <div>
-                <span class="section-title">Learn More ———————————————————————————————————————————</span>
-                <div class="link-row">
-                    <a href="portfolio" class="nav-link">Portfolio</a>
                 </div>
             </div>
         </div>
