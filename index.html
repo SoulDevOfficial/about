@@ -216,12 +216,39 @@
         }
 
         @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                padding: 2.5rem;
-                gap: 2rem;
-            }
-        }
+    body {
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .container {
+          grid-template-columns: 1fr;
+          padding: 2rem;
+          gap: 1.75rem;
+      }
+
+      .profile-side,
+      .content-side {
+          align-items: center;
+          text-align: center;
+      }
+
+      .btn-grid,
+      .animated-btn {
+          width: 100%;
+      }
+
+      .link-row {
+          justify-content: center;
+          flex-wrap: wrap;
+      }
+
+      .footer-copyright {
+          position: static;
+          margin-top: auto;
+      }
+  }
+
     </style>
 </head>
 <body>
