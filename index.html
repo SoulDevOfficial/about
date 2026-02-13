@@ -30,7 +30,37 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            position: relative; /* Allows footer to pin to bottom of body */
+            position: relative; 
+        }
+
+        /* macOS Style Portfolio Button */
+        .nav-corner {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            z-index: 10;
+        }
+
+        .port-btn {
+            background: var(--accent-purple);
+            color: var(--text-white);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 8px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .port-btn:hover {
+            transform: translateY(-2px);
+            background: var(--accent-dim);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
         }
 
         .container {
@@ -184,7 +214,6 @@
             color: var(--accent-purple);
         }
 
-        /* Fixed Copyright Footer */
         .footer-copyright {
             position: absolute;
             bottom: 30px;
@@ -196,7 +225,7 @@
             opacity: 0.5;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            pointer-events: none; /* Ensures it doesn't interfere with clicks */
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
@@ -205,13 +234,18 @@
                 padding: 2rem;
                 gap: 2rem;
             }
-            .footer-copyright {
-                bottom: 15px;
+            .nav-corner {
+                top: 15px;
+                left: 15px;
             }
         }
     </style>
 </head>
 <body>
+
+    <nav class="nav-corner">
+        <a href="portfolio.html" class="port-btn">Portfolio</a>
+    </nav>
 
     <div class="container" id="mainContainer">
         <div class="profile-side">
