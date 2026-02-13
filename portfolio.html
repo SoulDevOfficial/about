@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul // Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --accent-purple: #a855f7; 
+            --accent-dim: #7c3aed;
+            --text-gray: #a0a0a0;
+            --text-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-radius: 24px;
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+            z-index: 2;
+        }
+
+        .container.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 18px;
+            background: linear-gradient(45deg, #222, #333);
+            margin-bottom: 1.5rem;
+            border: 1px solid #444;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-purple);
+        }
+
+        .status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .description {
+            color: var(--text-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .content-side {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-white);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Tech Stack Styling */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: var(--accent-purple);
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .animated-btn {
+            position: relative;
+            background: #111;
+            padding: 1px;
+            border-radius: 12px;
+            text-decoration: none;
+            overflow: hidden;
+            display: block;
+        }
+
+        .animated-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, var(--accent-purple));
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .animated-btn:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(1turn); }
+        }
+
+        .btn-inner {
+            background: var(--card-bg);
+            padding: 16px 20px;
+            border-radius: 11px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--accent-purple);
+            transition: background 0.3s;
+        }
+
+        .animated-btn:hover .btn-inner {
+            background: #222;
+        }
+
+        .btn-inner span:last-child {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-dim);
+        }
+
+        .social-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--accent-purple);
+        }
+
+        .footer-copyright {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <div class="profile-side">
+            <div class="avatar">
+                <img src="avatar.png" alt="avatar" style="width:100%; height:100%; padding:10px;">
+            </div>
+            <h1 id="soulTitle">Portfolio</h1>
+            <div class="status">Selected Works</div>
+            <p class="description">
+                Cool works? idk man, this is just example text
+            </p>
+            <div class="social-row" style="margin-top: 2rem;">
+                <a href="index.html" class="social-link">← Back Home</a>
+            </div>
+        </div>
+
+        <div class="content-side">
+            <div>
+                <span class="section-title">⚡ Tech Stack</span>
+                <div class="tech-tags">
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">Discord.py</span>
+                    <span class="tag">Discord.js</span>
+                </div>
+            </div>
+
+            <div>
+                <span class="section-title">📂 Random Projects IG</span>
+                <div class="btn-grid">
+                    <a href="#" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>Discord Music Bot</span>
+                            <span>Automation</span>
+                        </div>
+                    </a>
+                    <a href="#" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>Web Script Gallery</span>
+                            <span>Web Dev</span>
+                        </div>
+                    </a>
+                    <a href="#" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>Custom API Wrapper</span>
+                            <span>Backend</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <span class="section-title">⊰ Experience ⊱</span>
+                <div class="social-row">
+                    <span class="social-link" style="cursor: default;">4+ Years Dev</span>
+                    <span class="social-link" style="cursor: default;">ME</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright">
+        &copy; 2026 Soul. All Rights Reserved.
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('mainContainer');
+            setTimeout(() => {
+                container.classList.add('loaded');
+            }, 100);
+
+            const purpleText = document.getElementById('soulTitle');
+            let brightness = 1;
+            setInterval(() => {
+                brightness = brightness === 1 ? 0.8 : 1;
+                purpleText.style.transition = 'opacity 2s ease-in-out';
+                purpleText.style.opacity = brightness;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
