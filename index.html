@@ -30,7 +30,6 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            position: relative; 
         }
 
         .container {
@@ -39,7 +38,7 @@
             background: var(--card-bg);
             border: 1px solid #2a2a2a;
             border-radius: 24px;
-            padding: 5rem 4rem 4rem 4rem; /* Extra top padding for the button */
+            padding: 4rem;
             display: grid;
             grid-template-columns: 1fr 1.5fr;
             gap: 4rem;
@@ -48,36 +47,11 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.8s ease-out;
-            z-index: 2;
         }
 
         .container.loaded {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        /* Fully Rounded Button Inside Box */
-        .port-btn-inside {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            background: var(--accent-purple);
-            color: var(--text-white);
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            padding: 6px 18px;
-            border-radius: 50px; /* Pill shape */
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .port-btn-inside:hover {
-            background: var(--accent-dim);
-            transform: scale(1.05);
         }
 
         .profile-side {
@@ -208,6 +182,34 @@
             color: var(--accent-purple);
         }
 
+        /* Fully Rounded Portfolio Button */
+        .portfolio-wrapper {
+            margin-top: 1rem;
+        }
+
+        .port-btn-pill {
+            display: inline-block;
+            background: var(--accent-purple);
+            color: var(--text-white);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 10px 24px;
+            border-radius: 50px; /* Max rounding */
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+        }
+
+        .port-btn-pill:hover {
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+        }
+
         .footer-copyright {
             position: absolute;
             bottom: 30px;
@@ -225,7 +227,7 @@
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
-                padding: 4rem 2rem 2rem 2rem;
+                padding: 2rem;
                 gap: 2rem;
             }
         }
@@ -234,8 +236,6 @@
 <body>
 
     <div class="container" id="mainContainer">
-        <a href="portfolio.html" class="port-btn-inside">Portfolio</a>
-
         <div class="profile-side">
             <div class="avatar">
                 <img src="avatar.png" alt="avatar" style="width:100%; height:100%; padding:10px;">
@@ -280,6 +280,10 @@
                     <a href="https://discord.com/users/1254195552808206429" class="social-link">Discord</a>
                     <a href="mailto:developing.soulnet@gmail.com" class="social-link">Email</a>
                 </div>
+            </div>
+
+            <div class="portfolio-wrapper">
+                <a href="portfolio.html" class="port-btn-pill">View Portfolio</a>
             </div>
         </div>
     </div>
