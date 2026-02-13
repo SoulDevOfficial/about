@@ -165,49 +165,21 @@
             color: var(--accent-dim);
         }
 
-        .social-row {
+        .link-row {
             display: flex;
             gap: 15px;
             margin-top: 10px;
         }
 
-        .social-link {
+        .nav-link {
             color: var(--text-gray);
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s;
         }
 
-        .social-link:hover {
+        .nav-link:hover {
             color: var(--accent-purple);
-        }
-
-        /* Fully Rounded Portfolio Button */
-        .portfolio-wrapper {
-            margin-top: 1rem;
-        }
-
-        .port-btn-pill {
-            display: inline-block;
-            background: var(--accent-purple);
-            color: var(--text-white);
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            padding: 10px 24px;
-            border-radius: 50px; /* Max rounding */
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
-        }
-
-        .port-btn-pill:hover {
-            background: var(--accent-dim);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
         }
 
         .footer-copyright {
@@ -274,16 +246,19 @@
 
             <div>
                 <span class="section-title">⊰ Connect ⊱</span>
-                <div class="social-row">
-                    <a href="https://github.com/SoulDevOfficial" class="social-link">GitHub</a>
-                    <a href="https://x.com/Soul132830" class="social-link">Twitter</a>
-                    <a href="https://discord.com/users/1254195552808206429" class="social-link">Discord</a>
-                    <a href="mailto:developing.soulnet@gmail.com" class="social-link">Email</a>
+                <div class="link-row">
+                    <a href="https://github.com/SoulDevOfficial" class="nav-link">GitHub</a>
+                    <a href="https://x.com/Soul132830" class="nav-link">Twitter</a>
+                    <a href="https://discord.com/users/1254195552808206429" class="nav-link">Discord</a>
+                    <a href="mailto:developing.soulnet@gmail.com" class="nav-link">Email</a>
                 </div>
             </div>
 
-            <div class="portfolio-wrapper">
-                <a href="portfolio.html" class="port-btn-pill">View Portfolio</a>
+            <div>
+                <span class="section-title">? Learn More</span>
+                <div class="link-row">
+                    <a href="portfolio" class="nav-link">Portfolio</a>
+                </div>
             </div>
         </div>
     </div>
