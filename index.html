@@ -9,10 +9,10 @@
         :root {
             --bg-deep: #0f0f0f;
             --card-bg: #1a1a1a;
-            --purple-bright: #7f11d4;
-            --purple-dim: #5a0c96;
+            --accent-purple: #7f11d4;
+            --accent-dim: #5a0c96;
             --text-gray: #a0a0a0;
-            --text-light: #ffbf00;
+            --text-white: #ffffff;
         }
 
         * {
@@ -24,7 +24,7 @@
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--bg-deep);
-            color: var(--text-light);
+            color: var(--text-white);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -72,13 +72,13 @@
         h1 {
             font-size: 2.2rem;
             margin-bottom: 0.5rem;
-            color: var(--amber-bright);
+            color: var(--accent-purple);
         }
 
         .status {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
-            color: var(--amber-dim);
+            color: var(--accent-dim);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 1.5rem;
@@ -99,7 +99,7 @@
         .section-title {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
-            color: #ffffff;
+            color: var(--text-white);
             text-transform: uppercase;
             margin-bottom: 1rem;
             display: block;
@@ -121,6 +121,7 @@
             display: block;
         }
 
+        /* Fixed Circling Animation */
         .animated-btn::before {
             content: '';
             position: absolute;
@@ -128,7 +129,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: conic-gradient(transparent, transparent, transparent, var(--amber-bright));
+            background: conic-gradient(transparent, transparent, transparent, var(--accent-purple));
             animation: rotate 4s linear infinite;
             opacity: 0;
             transition: opacity 0.3s;
@@ -151,7 +152,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--text-light);
+            color: var(--accent-purple);
             transition: background 0.3s;
         }
 
@@ -162,7 +163,7 @@
         .btn-inner span:last-child {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
-            color: var(--amber-dim);
+            color: var(--accent-dim);
         }
 
         .social-row {
@@ -179,7 +180,7 @@
         }
 
         .social-link:hover {
-            color: var(--amber-bright);
+            color: var(--accent-purple);
         }
 
         @media (max-width: 768px) {
@@ -198,7 +199,7 @@
             <div class="avatar">
                 <img src="avatar.png" alt="avatar" style="width:100%; height:100%; padding:10px;">
             </div>
-            <h1>Soul</h1>
+            <h1 id="soulTitle">Soul</h1>
             <div class="status">A Chill Developer</div>
             <p class="description">
                 Hey, I'm Soul! I make cool web scripts, apps, Discord bots, and more! I also love to work with music and starting into sketches / art! If you want to chat or commission a project, feel free to reach out on my socials!
@@ -249,12 +250,12 @@
                 container.classList.add('loaded');
             }, 100);
 
-            const amberText = document.querySelector('h1');
+            const purpleText = document.getElementById('soulTitle');
             let brightness = 1;
             setInterval(() => {
                 brightness = brightness === 1 ? 0.8 : 1;
-                amberText.style.transition = 'opacity 2s ease-in-out';
-                amberText.style.opacity = brightness;
+                purpleText.style.transition = 'opacity 2s ease-in-out';
+                purpleText.style.opacity = brightness;
             }, 2000);
         });
     </script>
