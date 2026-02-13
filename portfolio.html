@@ -26,11 +26,11 @@
             background-color: var(--bg-deep);
             color: var(--text-white);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            position: relative;
         }
 
         .container {
@@ -39,7 +39,8 @@
             background: var(--card-bg);
             border: 1px solid #2a2a2a;
             border-radius: 24px;
-            padding: 3.5rem;
+            /* Reduced padding to trim height */
+            padding: 2.5rem 3rem; 
             position: relative;
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             opacity: 0;
@@ -47,8 +48,8 @@
             transition: all 0.8s ease-out;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            z-index: 2;
+            /* Reduced gap to trim height */
+            gap: 1.2rem; 
         }
 
         .container.loaded {
@@ -60,7 +61,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         h1 {
@@ -84,13 +85,13 @@
 
         .main-text {
             color: var(--text-gray);
-            line-height: 1.8;
+            line-height: 1.6; /* Slightly tighter line height */
             font-size: 1.05rem;
         }
 
         .inner-footer {
-            margin-top: 1rem;
-            padding-top: 2rem;
+            margin-top: 0.5rem;
+            padding-top: 1.5rem;
             border-top: 1px solid #2a2a2a;
         }
 
@@ -99,7 +100,7 @@
             font-size: 0.75rem;
             color: var(--text-white);
             text-transform: uppercase;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             display: block;
             letter-spacing: 2px;
         }
@@ -124,11 +125,8 @@
             color: var(--accent-dim);
         }
 
-        /* Copyright OUTSIDE the box */
         .outer-copyright {
-            position: absolute;
-            bottom: 30px;
-            width: 100%;
+            margin-top: 2rem;
             text-align: center;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
@@ -140,9 +138,8 @@
         }
 
         @media (max-width: 600px) {
-            .container { padding: 2.5rem; }
+            .container { padding: 2rem; }
             h1 { font-size: 1.8rem; }
-            .outer-copyright { bottom: 15px; }
         }
     </style>
 </head>
@@ -158,7 +155,6 @@
             <p>
                 Hey, I'm Soul! I'm a United States developer working mainly in backend projects and getting into frontend work again! I have just about ~4 years experience in the the coding languages below! Though I do not do developing on a buiness scale, I do enjoy working individual private users and groups to make both good quality and fully custom websites, programs, and more! If your interested or would like to reach out to chat, feel free to do so through my provided socials listed on the home page!
             </p>
-            <br>
         </div>
 
         <div class="inner-footer">
