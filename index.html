@@ -45,7 +45,7 @@
             border-radius: 24px;
             padding: 3.2rem 4rem;
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
+            grid-template-columns: 1fr 1.2fr; /* Adjusted for better balance */
             gap: 4rem;
             position: relative;
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
@@ -104,6 +104,7 @@
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            width: 100%; /* Ensure content side uses full grid space */
         }
 
         .category-header {
@@ -129,10 +130,10 @@
         }
 
         .btn-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 15px;
-            width: 100%; /* Ensures grid takes full width of content-side */
+            width: 100%;
         }
 
         .animated-btn {
@@ -143,7 +144,7 @@
             text-decoration: none;
             overflow: hidden;
             display: block;
-            width: 100%; /* Ensures buttons fill the grid container */
+            width: 100%; /* Force button to fill width */
         }
 
         .animated-btn::before {
@@ -178,16 +179,23 @@
             align-items: center;
             color: var(--accent-purple);
             transition: background 0.3s;
+            width: 100%;
         }
 
         .animated-btn:hover .btn-inner {
             background: #222;
         }
 
+        .btn-inner span:first-child {
+            flex-grow: 1; /* Pushes the date/arrow to the end */
+        }
+
         .btn-inner span:last-child {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
             color: var(--accent-dim);
+            text-align: right;
+            padding-left: 10px;
         }
 
         .link-row {
@@ -224,13 +232,12 @@
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
-                justify-content: space-between;
             }
 
             .container {
                 grid-template-columns: 1fr;
                 padding: 2rem;
-                gap: 1.75rem;
+                gap: 2rem;
             }
 
             .profile-side,
