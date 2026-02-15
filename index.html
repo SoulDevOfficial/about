@@ -132,6 +132,7 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 15px;
+            width: 100%; /* Ensures grid takes full width of content-side */
         }
 
         .animated-btn {
@@ -142,6 +143,7 @@
             text-decoration: none;
             overflow: hidden;
             display: block;
+            width: 100%; /* Ensures buttons fill the grid container */
         }
 
         .animated-btn::before {
@@ -235,11 +237,6 @@
             .content-side {
                 align-items: center;
                 text-align: center;
-            }
-
-            .btn-grid,
-            .animated-btn {
-                width: 100%;
             }
 
             .link-row {
