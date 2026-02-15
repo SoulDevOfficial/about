@@ -78,7 +78,6 @@
             justify-content: center;
         }
 
-
         h1 {
             font-size: 2.2rem;
             margin-bottom: 0.5rem;
@@ -98,6 +97,7 @@
             color: var(--text-gray);
             line-height: 1.7;
             font-size: 0.95rem;
+            margin-bottom: 1.5rem;
         }
 
         .content-side {
@@ -106,7 +106,6 @@
             gap: 2rem;
         }
 
-        /* Category Header with connected line */
         .category-header {
             display: flex;
             align-items: center;
@@ -198,7 +197,7 @@
         .nav-link {
             color: var(--text-gray);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: color 0.3s;
         }
 
@@ -221,42 +220,38 @@
         }
 
         @media (max-width: 768px) {
-    body {
-        flex-direction: column;
-        justify-content: space-between;
-      }
+            body {
+                flex-direction: column;
+                justify-content: space-between;
+            }
 
-      .container {
-          grid-template-columns: 1fr;
-          padding: 2rem;
-          gap: 1.75rem;
-      }
+            .container {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+                gap: 1.75rem;
+            }
 
-      .profile-side,
-      .content-side {
-          align-items: center;
-          text-align: center;
-      }
+            .profile-side,
+            .content-side {
+                align-items: center;
+                text-align: center;
+            }
 
-      .btn-grid,
-      .animated-btn {
-          width: 100%;
-      }
+            .btn-grid,
+            .animated-btn {
+                width: 100%;
+            }
 
-      .link-row {
-          justify-content: center;
-          flex-wrap: wrap;
-      }
+            .link-row {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
 
-      .footer-copyright {
-          position: static;
-          margin-top: auto;
-
-      .btn-grid:has(.animated-btn:only-child) {
-          max-width: 100%;
-      }
-  }
-
+            .footer-copyright {
+                position: static;
+                margin-top: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -271,6 +266,12 @@
             <p class="description">
                 Hey, I'm Soul! I make cool web scripts, apps, Discord bots, and more! I also love to work with music and starting into sketches / art! If you want to chat or commission a project, feel free to reach out on my socials!
             </p>
+            <div class="link-row">
+                <a href="https://github.com/SoulDevOfficial" class="nav-link">GitHub</a>
+                <a href="https://x.com/S0ulTheDev" class="nav-link">Twitter</a>
+                <a href="https://discord.com/users/1254195552808206429" class="nav-link">Discord</a>
+                <a href="mailto:developing.soulnet@gmail.com" class="nav-link">Email</a>
+            </div>
         </div>
 
         <div class="content-side">
@@ -283,6 +284,12 @@
                     <a href="portfolio" class="animated-btn">
                         <div class="btn-inner">
                             <span>Portfolio</span>
+                            <span>-></span>
+                        </div>
+                    </a>
+                    <a href="commissions" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>Commissions</span>
                             <span>-></span>
                         </div>
                     </a>
@@ -313,19 +320,6 @@
                             <span>10 / 2024</span>
                         </div>
                     </a>
-                </div>
-            </div>
-
-            <div>
-                <div class="category-header">
-                    <span class="section-title">⊰ Connect ⊱</span>
-                    <div class="header-line"></div>
-                </div>
-                <div class="link-row">
-                    <a href="https://github.com/SoulDevOfficial" class="nav-link">GitHub</a>
-                    <a href="https://x.com/S0ulTheDev" class="nav-link">Twitter</a>
-                    <a href="https://discord.com/users/1254195552808206429" class="nav-link">Discord</a>
-                    <a href="mailto:developing.soulnet@gmail.com" class="nav-link">Email</a>
                 </div>
             </div>
         </div>
