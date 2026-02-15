@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta property="og:title" content="Soul's Profile">
+    <meta property="og:description" content="Hey! Click to check out my new web profile!">
+    <meta property="og:url" content="https://soul.dedyn.io">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#a855f7">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul // About</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --accent-purple: #a855f7; 
+            --accent-dim: #7c3aed;
+            --text-gray: #a0a0a0;
+            --text-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-radius: 24px;
+            padding: 3.2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .container.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #222, #333);
+            margin-bottom: 1.5rem;
+            border: 1px solid #444;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-purple);
+        }
+
+        .status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .description {
+            color: var(--text-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .content-side {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Category Header with connected line */
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-white);
+            text-transform: uppercase;
+            white-space: nowrap;
+            letter-spacing: 1px;
+        }
+
+        .header-line {
+            flex-grow: 1;
+            height: 1px;
+            background: #2a2a2a;
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .animated-btn {
+            position: relative;
+            background: #111;
+            padding: 1px;
+            border-radius: 12px;
+            text-decoration: none;
+            overflow: hidden;
+            display: block;
+        }
+
+        .animated-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, var(--accent-purple));
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .animated-btn:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(1turn); }
+        }
+
+        .btn-inner {
+            background: var(--card-bg);
+            padding: 16px 20px;
+            border-radius: 11px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--accent-purple);
+            transition: background 0.3s;
+        }
+
+        .animated-btn:hover .btn-inner {
+            background: #222;
+        }
+
+        .btn-inner span:last-child {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-dim);
+        }
+
+        .link-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .nav-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-purple);
+        }
+
+        .footer-copyright {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .container {
+          grid-template-columns: 1fr;
+          padding: 2rem;
+          gap: 1.75rem;
+      }
+
+      .profile-side,
+      .content-side {
+          align-items: center;
+          text-align: center;
+      }
+
+      .btn-grid,
+      .animated-btn {
+          width: 100%;
+      }
+
+      .link-row {
+          justify-content: center;
+          flex-wrap: wrap;
+      }
+
+      .footer-copyright {
+          position: static;
+          margin-top: auto;
+
+      .btn-grid:has(.animated-btn:only-child) {
+          max-width: 100%;
+      }
+  }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <div class="profile-side">
+            <div class="avatar">
+                <img src="avatar.png" alt="avatar" style="width:100%; height:100%; object-fit: contain;">
+            </div>
+            <h1 id="soulTitle">Soul</h1>
+            <div class="status">A Chill Developer</div>
+            <p class="description">
+                Hey, I'm Soul! I make cool web scripts, apps, Discord bots, and more! I also love to work with music and starting into sketches / art! If you want to chat or commission a project, feel free to reach out on my socials!
+            </p>
+        </div>
+
+        <div class="content-side">
+            <div>
+                <div class="category-header">
+                    <span class="section-title">🗁 Learn More</span>
+                    <div class="header-line"></div>
+                </div>
+                <div class="btn-grid">
+                    <a href="portfolio" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>Portfolio</span>
+                            <span>-></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <div class="category-header">
+                    <span class="section-title">🌐︎ Supported Projects</span>
+                    <div class="header-line"></div>
+                </div>
+                <div class="btn-grid">
+                    <a href="https://seedloaf.com" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>Seedloaf Hosting</span>
+                            <span>04 / 2024</span>
+                        </div>
+                    </a>
+                    <a href="https://labsutility.github.io/home/" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>LabsUtility</span>
+                            <span>09 / 2025</span>
+                        </div>
+                    </a>
+                    <a href="https://soul.dedyn.io" class="animated-btn">
+                        <div class="btn-inner">
+                            <span>Neuro-Celestia</span>
+                            <span>10 / 2024</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <div class="category-header">
+                    <span class="section-title">⊰ Connect ⊱</span>
+                    <div class="header-line"></div>
+                </div>
+                <div class="link-row">
+                    <a href="https://github.com/SoulDevOfficial" class="nav-link">GitHub</a>
+                    <a href="https://x.com/S0ulTheDev" class="nav-link">Twitter</a>
+                    <a href="https://discord.com/users/1254195552808206429" class="nav-link">Discord</a>
+                    <a href="mailto:developing.soulnet@gmail.com" class="nav-link">Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright">
+        &copy; 2026 Soul. All Rights Reserved.
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('mainContainer');
+            setTimeout(() => {
+                container.classList.add('loaded');
+            }, 100);
+
+            const purpleText = document.getElementById('soulTitle');
+            let brightness = 1;
+            setInterval(() => {
+                brightness = brightness === 1 ? 0.8 : 1;
+                purpleText.style.transition = 'opacity 2s ease-in-out';
+                purpleText.style.opacity = brightness;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
