@@ -33,6 +33,7 @@
             background-color: var(--bg-deep);
             color: var(--text-white);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -51,6 +52,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.8s ease-out;
+            margin-bottom: 30px; /* Space for the footer outside */
         }
 
         .container.loaded {
@@ -58,24 +60,35 @@
             transform: translateY(0);
         }
 
-        /* Header Styling */
+        /* Header Styling with Back Link across from Title */
         .page-header {
             margin-bottom: 2.5rem;
-            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         h1 {
             font-size: 2.2rem;
             color: var(--accent-purple);
-            margin-bottom: 0.5rem;
         }
 
-        .subtitle {
+        .nav-link-top {
+            color: var(--text-gray);
+            text-decoration: none;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent-dim);
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            transition: color 0.3s;
+            border: 1px solid #2a2a2a;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-link-top:hover {
+            color: var(--accent-purple);
+            border-color: var(--accent-purple);
         }
 
         /* Commission Grid System */
@@ -115,7 +128,7 @@
             transform: scale(1.03);
         }
 
-        /* Animated Buttons (Same as Profile) */
+        /* Animated Buttons */
         .animated-btn {
             position: relative;
             background: #111;
@@ -171,31 +184,8 @@
             color: var(--accent-dim);
         }
 
-        /* Back to Home Link */
-        .back-nav {
-            margin-top: 3rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: color 0.3s;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-purple);
-        }
-
+        /* Footer Style (External) */
         .footer-copyright {
-            position: absolute;
-            bottom: 30px;
-            width: 100%;
             text-align: center;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
@@ -204,6 +194,7 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             pointer-events: none;
+            padding-bottom: 20px;
         }
 
         @media (max-width: 768px) {
@@ -213,9 +204,10 @@
             .commission-grid {
                 grid-template-columns: 1fr;
             }
-            .footer-copyright {
-                position: static;
-                margin-top: 2rem;
+            .page-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
         }
     </style>
@@ -225,15 +217,15 @@
     <div class="container" id="mainContainer">
         <div class="page-header">
             <h1 id="soulTitle">Commissions</h1>
-            <div class="subtitle">Custom Services & Projects</div>
+            <a href="index.html" class="nav-link-top">← Back to Profile</a>
         </div>
 
         <div class="commission-grid">
             <div class="commission-card">
                 <div class="showcase-img">
-                    <img src="preview1.png" alt="Web Scripting">
+                    <img src="preview1.png" alt="Web Scripts">
                 </div>
-                <a href="mailto:developing.soulnet@gmail.com" class="animated-btn">
+                <a href="#" class="animated-btn">
                     <div class="btn-inner">
                         <span>Web Scripts</span>
                         <span>$VARIES</span>
@@ -245,7 +237,7 @@
                 <div class="showcase-img">
                     <img src="preview2.png" alt="Discord Bots">
                 </div>
-                <a href="mailto:developing.soulnet@gmail.com" class="animated-btn">
+                <a href="#" class="animated-btn">
                     <div class="btn-inner">
                         <span>Discord Bots</span>
                         <span>$VARIES</span>
@@ -255,9 +247,9 @@
 
             <div class="commission-card">
                 <div class="showcase-img">
-                    <img src="preview3.png" alt="Music & Audio">
+                    <img src="preview3.png" alt="Music Production">
                 </div>
-                <a href="mailto:developing.soulnet@gmail.com" class="animated-btn">
+                <a href="#" class="animated-btn">
                     <div class="btn-inner">
                         <span>Music / Audio</span>
                         <span>$VARIES</span>
@@ -269,17 +261,13 @@
                 <div class="showcase-img">
                     <img src="preview4.png" alt="Digital Art">
                 </div>
-                <a href="mailto:developing.soulnet@gmail.com" class="animated-btn">
+                <a href="#" class="animated-btn">
                     <div class="btn-inner">
                         <span>Sketches / Art</span>
                         <span>$VARIES</span>
                     </div>
                 </a>
             </div>
-        </div>
-
-        <div class="back-nav">
-            <a href="index.html" class="nav-link">← [ Back to Profile ]</a>
         </div>
     </div>
 
