@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta property="og:title" content="Soul's Profile">
+    <meta property="og:description" content="Hey! Click to check out my new web profile!">
+    <meta property="og:url" content="https://soul.dedyn.io">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#a855f7">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul // Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --accent-purple: #a855f7; 
+            --accent-dim: #7c3aed;
+            --text-gray: #a0a0a0;
+            --text-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-radius: 24px;
+            padding: 2.5rem 3rem; 
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem; 
+        }
+
+        .container.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header Alignment Fix */
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--accent-purple);
+        }
+
+        .nav-link-top {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            border: 1px solid #2a2a2a;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        .nav-link-top:hover {
+            color: var(--accent-purple);
+            border-color: var(--accent-purple);
+            background: rgba(168, 85, 247, 0.05);
+        }
+
+        .main-text {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .inner-footer {
+            margin-top: 0.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-white);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .languages {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .languages span {
+            display: flex;
+            align-items: center;
+        }
+
+        .languages span::before {
+            content: "•";
+            margin-right: 8px;
+            color: var(--accent-dim);
+        }
+
+        .outer-copyright {
+            margin-top: 2rem;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            opacity: 0.4;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            pointer-events: none;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 2rem; }
+            .header-row {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <div class="header-row">
+            <h1 id="soulTitle">Uh Oh!</h1>
+            <a href="https://soul.dedyn.io" class="nav-link-top">← Back to Profile</a>
+        </div>
+
+        <div class="main-text">
+            <p>
+                Looks like I temporarily disabled this page! Come back soon and it should be finished!
+            </p>
+        </div>
+    </div>
+
+    <div class="outer-copyright">
+        &copy; 2026 Soul. All Rights Reserved.
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('mainContainer');
+            setTimeout(() => {
+                container.classList.add('loaded');
+            }, 100);
+
+            const purpleText = document.getElementById('soulTitle');
+            let brightness = 1;
+            setInterval(() => {
+                brightness = brightness === 1 ? 0.8 : 1;
+                purpleText.style.transition = 'opacity 2s ease-in-out';
+                purpleText.style.opacity = brightness;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
