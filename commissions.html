@@ -5,7 +5,7 @@
     <meta property="og:description" content="Hey! Click to check out my new web profile!">
     <meta property="og:url" content="https://soul.dedyn.io">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#a855f7">
+    <meta name="theme-color" content="#2fb47e">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soul // Commissions</title>
@@ -16,8 +16,9 @@
         :root {
             --bg-deep: #0f0f0f;
             --card-bg: #1a1a1a;
-            --accent-purple: #a855f7; 
-            --accent-dim: #7c3aed;
+            --accent-purple: #2fb47e; 
+            --accent-dim: #249066;
+            --accent-light: #45c992;
             --text-gray: #a0a0a0;
             --text-white: #ffffff;
         }
@@ -52,7 +53,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.8s ease-out;
-            margin-bottom: 30px; /* Space for the footer outside */
+            margin-bottom: 30px;
         }
 
         .container.loaded {
@@ -60,7 +61,6 @@
             transform: translateY(0);
         }
 
-        /* Header Styling with Back Link across from Title */
         .page-header {
             margin-bottom: 2.5rem;
             display: flex;
@@ -91,7 +91,6 @@
             border-color: var(--accent-purple);
         }
 
-        /* Commission Grid System */
         .commission-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -104,7 +103,6 @@
             gap: 1rem;
         }
 
-        /* Image Display */
         .showcase-img {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -128,7 +126,6 @@
             transform: scale(1.03);
         }
 
-        /* Animated Buttons */
         .animated-btn {
             position: relative;
             background: #111;
@@ -184,7 +181,6 @@
             color: var(--accent-dim);
         }
 
-        /* Footer Style (External) */
         .footer-copyright {
             text-align: center;
             font-family: 'JetBrains Mono', monospace;
