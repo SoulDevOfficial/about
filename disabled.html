@@ -15,7 +15,6 @@
             --bg-deep: #0f1012;
             --card-bg: rgba(24, 25, 28, 0.88);
             
-            /* High-Contrast Silver/Sage Accent Palette */
             --accent-main: #b4c2be;   
             --accent-dim: #7a8a86;    
             --accent-light: #e6efec;  
@@ -45,7 +44,6 @@
             overflow-x: hidden;
         }
 
-        /* --- Ambient Background Canvas --- */
         #bgCanvas {
             position: fixed;
             top: 0;
@@ -56,7 +54,6 @@
             pointer-events: none;
         }
 
-        /* --- CARD WRAPPER WITH CLEAN GLOW BORDER --- */
         .card-wrapper {
             position: relative;
             background: #111214;
@@ -158,10 +155,8 @@
 </head>
 <body>
 
-    <!-- Floating Particles Background Canvas -->
     <canvas id="bgCanvas"></canvas>
 
-    <!-- Main Card Container -->
     <div class="card-wrapper" id="mainContainer">
         <div class="container">
             <div class="header-row">
@@ -196,7 +191,6 @@
                 soulTitle.style.opacity = brightness;
             }, 2000);
 
-            // --- Floating Particle Background JS ---
             const canvas = document.getElementById('bgCanvas');
             const ctx = canvas.getContext('2d');
 
@@ -211,9 +205,9 @@
             const particles = [];
             
             const colors = [
-                'rgba(180, 194, 190, ', // Sage Silver Accent
-                'rgba(220, 163, 104, ', // Gold Accent
-                'rgba(255, 255, 255, '  /* Bright White */
+                'rgba(180, 194, 190, ',
+                'rgba(220, 163, 104, ', 
+                'rgba(255, 255, 255, ' 
             ];
 
             class Particle {
