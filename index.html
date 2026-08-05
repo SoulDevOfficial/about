@@ -5,19 +5,23 @@
     <meta property="og:description" content="Hey! Click to check out my new web profile!">
     <meta property="og:url" content="https://soul.dedyn.io">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#2fb47e">
+    <meta name="theme-color" content="#b4c2be">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soul // About</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --accent-purple: #2fb47e;
-            --accent-dim: #249066;
-            --accent-light: #45c992;
-            --text-gray: #a0a0a0;
+            --bg-deep: #0f1012;
+            --card-bg: #18191c;
+            
+            /* High-Contrast Silver/Sage Accent */
+            --accent-main: #b4c2be;   
+            --accent-dim: #7a8a86;    
+            --accent-light: #e6efec;  
+            --accent-warm: #dca368;
+            
+            --text-gray: #a0a5a4;
             --text-white: #ffffff;
         }
 
@@ -36,28 +40,54 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- Ambient Background Canvas --- */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- CARD WRAPPER WITH CLEAN GLOW BORDER --- */
+        .card-wrapper {
+            position: relative;
+            background: #111214;
+            padding: 2px; 
+            border-radius: 26px;
+            width: 100%;
+            max-width: 850px;
+            border: 1px solid var(--accent-dim);
+            box-shadow: 0 0 25px rgba(180, 194, 190, 0.12), 0 30px 60px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            z-index: 1;
+        }
+
+        .card-wrapper.loaded {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .container {
             width: 100%;
-            max-width: 850px;
-            background: var(--card-bg);
-            border: 1px solid #2a2a2a;
+            background: rgba(24, 25, 28, 0.88); /* Translucency for background particles */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 24px;
             padding: 3.2rem 4rem;
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: 4rem;
             position: relative;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
-        }
-
-        .container.loaded {
-            opacity: 1;
-            transform: translateY(0);
+            z-index: 1; 
         }
 
         .profile-side {
@@ -70,19 +100,20 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #222, #333);
+            background: linear-gradient(45deg, #1f2225, #2d3136);
             margin-bottom: 1.5rem;
-            border: 1px solid #444;
+            border: 1px solid var(--accent-dim);
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 15px rgba(180, 194, 190, 0.15);
         }
 
         h1 {
             font-size: 2.2rem;
             margin-bottom: 0.5rem;
-            color: var(--accent-purple);
+            color: var(--accent-main);
         }
 
         .status {
@@ -127,7 +158,7 @@
         .header-line {
             flex-grow: 1;
             height: 1px;
-            background: #2a2a2a;
+            background: #282b30;
         }
 
         .btn-grid {
@@ -137,9 +168,10 @@
             width: 100%;
         }
 
+        /* Double-beam rotating effect retained for button hovers */
         .animated-btn {
             position: relative;
-            background: #111;
+            background: #111214;
             padding: 1px;
             border-radius: 12px;
             text-decoration: none;
@@ -155,8 +187,17 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: conic-gradient(transparent, transparent, transparent, var(--accent-purple));
-            animation: rotate 4s linear infinite;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                var(--accent-main) 20%,
+                transparent 40%,
+                transparent 50%,
+                var(--accent-main) 70%,
+                transparent 90%,
+                transparent 100%
+            );
+            animation: btnRotate 4s linear infinite;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -165,8 +206,9 @@
             opacity: 1;
         }
 
-        @keyframes rotate {
-            100% { transform: rotate(1turn); }
+        @keyframes btnRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .btn-inner {
@@ -178,13 +220,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--accent-purple);
-            transition: background 0.3s;
+            color: var(--accent-main);
+            transition: background 0.3s, color 0.3s;
             width: 100%;
         }
 
         .animated-btn:hover .btn-inner {
-            background: #222;
+            background: #22252a;
+            color: var(--accent-light);
         }
 
         .btn-inner span:first-child {
@@ -213,7 +256,7 @@
         }
 
         .nav-link:hover {
-            color: var(--accent-purple);
+            color: var(--accent-main);
         }
 
         .footer-copyright {
@@ -228,11 +271,17 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             pointer-events: none;
+            z-index: 1;
         }
 
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
+            }
+
+            .card-wrapper {
+                margin: 20px;
+                max-width: calc(100% - 40px);
             }
 
             .container {
@@ -261,70 +310,76 @@
 </head>
 <body>
 
-    <div class="container" id="mainContainer">
-        <div class="profile-side">
-            <div class="avatar">
-                <img src="avatar2.png" alt="avatar" style="width:100%; height:100%; object-fit: contain;">
-            </div>
-            <h1 id="soulTitle">Soul</h1>
-            <div class="status">A Chill Developer</div>
-            <p class="description">
-                Hey, I'm Soul! I make cool web scripts, apps, Discord bots, and more! I also love to work with music and starting into sketches / art! If you want to chat or commission a project, feel free to reach out on my socials!
-            </p>
-            <div class="link-row">
-                <a href="https://github.com/SoulDevOfficial" class="nav-link">GitHub</a>
-                <a href="https://x.com/S0ulTheDev" class="nav-link">Twitter</a>
-                <a href="https://discord.com/users/1254195552808206429" class="nav-link">Discord</a>
-                <a href="mailto:developing.soulnet@gmail.com" class="nav-link">Email</a>
-            </div>
-        </div>
+    <!-- Floating Particles Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
 
-        <div class="content-side">
-            <div>
-                <div class="category-header">
-                    <span class="section-title">🗁 Learn More</span>
-                    <div class="header-line"></div>
+    <!-- Main Card Container -->
+    <div class="card-wrapper" id="mainContainer">
+        <div class="container">
+            <div class="profile-side">
+                <div class="avatar">
+                    <img src="avatar.png" alt="avatar" style="width:100%; height:100%; object-fit: cover;">
                 </div>
-                <div class="btn-grid">
-                    <a href="portfolio" class="animated-btn">
-                        <div class="btn-inner">
-                            <span>Portfolio</span>
-                            <span>-></span>
-                        </div>
-                    </a>
-                    <a href="commissions" class="animated-btn">
-                        <div class="btn-inner">
-                            <span>Commissions</span>
-                            <span>-></span>
-                        </div>
-                    </a>
+                <h1 id="soulTitle">Soul</h1>
+                <div class="status">A Chill Developer</div>
+                <p class="description">
+                    Hey, I'm Soul! I make cool web scripts, apps, Discord bots, and more! I also love to work with music and starting into sketches / art! If you want to chat or commission a project, feel free to reach out on my socials!
+                </p>
+                <div class="link-row">
+                    <a href="https://github.com/SoulDevOfficial" class="nav-link">GitHub</a>
+                    <a href="https://x.com/S0ulTheDev" class="nav-link">Twitter</a>
+                    <a href="https://discord.com/users/1254195552808206429" class="nav-link">Discord</a>
+                    <a href="mailto:developing.soulnet@gmail.com" class="nav-link">Email</a>
                 </div>
             </div>
 
-            <div>
-                <div class="category-header">
-                    <span class="section-title">🌐︎ Supported Projects</span>
-                    <div class="header-line"></div>
+            <div class="content-side">
+                <div>
+                    <div class="category-header">
+                        <span class="section-title">🗁 Learn More</span>
+                        <div class="header-line"></div>
+                    </div>
+                    <div class="btn-grid">
+                        <a href="portfolio" class="animated-btn">
+                            <div class="btn-inner">
+                                <span>Portfolio</span>
+                                <span>-></span>
+                            </div>
+                        </a>
+                        <a href="commissions" class="animated-btn">
+                            <div class="btn-inner">
+                                <span>Commissions</span>
+                                <span>-></span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="btn-grid">
-                    <a href="https://seedloaf.com" class="animated-btn">
-                        <div class="btn-inner">
-                            <span>Seedloaf Hosting</span>
-                            <span>04 / 2024</span>
-                        </div>
-                    </a>
-                    <a href="https://directum.org/" class="animated-btn">
-                        <div class="btn-inner">
-                            <span>Directum.org</span>
-                            <span>03 / 2026</span>
-                        </div>
-                    </a>
-                    <a href="https://www.bump4you.com/" class="animated-btn">
-                        <div class="btn-inner">
-                            <span>Bump4You</span>
-                            <span>3 / 2023</span>
-                        </div>
-                    </a>
+
+                <div>
+                    <div class="category-header">
+                        <span class="section-title">🌐︎ Supported Projects</span>
+                        <div class="header-line"></div>
+                    </div>
+                    <div class="btn-grid">
+                        <a href="https://seedloaf.com" class="animated-btn">
+                            <div class="btn-inner">
+                                <span>Seedloaf Hosting</span>
+                                <span>04 / 2024</span>
+                            </div>
+                        </a>
+                        <a href="https://directum.org/" class="animated-btn">
+                            <div class="btn-inner">
+                                <span>Directum.org</span>
+                                <span>03 / 2026</span>
+                            </div>
+                        </a>
+                        <a href="https://www.bump4you.com/" class="animated-btn">
+                            <div class="btn-inner">
+                                <span>Bump4You</span>
+                                <span>3 / 2023</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -341,13 +396,90 @@
                 container.classList.add('loaded');
             }, 100);
 
-            const purpleText = document.getElementById('soulTitle');
+            const soulTitle = document.getElementById('soulTitle');
             let brightness = 1;
             setInterval(() => {
                 brightness = brightness === 1 ? 0.8 : 1;
-                purpleText.style.transition = 'opacity 2s ease-in-out';
-                purpleText.style.opacity = brightness;
+                soulTitle.style.transition = 'opacity 2s ease-in-out';
+                soulTitle.style.opacity = brightness;
             }, 2000);
+
+            // --- Floating Particle Background JS ---
+            const canvas = document.getElementById('bgCanvas');
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const particleCount = 45;
+            const particles = [];
+            
+            const colors = [
+                'rgba(180, 194, 190, ', // Sage
+                'rgba(220, 163, 104, ', // Gold Accent
+                'rgba(255, 255, 255, '  /* White */
+            ];
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height + Math.random() * 100;
+                    this.radius = Math.random() * 2 + 0.5;
+                    this.colorPrefix = colors[Math.floor(Math.random() * colors.length)];
+                    this.alpha = Math.random() * 0.5 + 0.1;
+                    this.speedY = Math.random() * 0.4 + 0.1;
+                    this.speedX = (Math.random() - 0.5) * 0.2;
+                    this.fadeSpeed = Math.random() * 0.003 + 0.001;
+                }
+
+                update() {
+                    this.y -= this.speedY;
+                    this.x += this.speedX;
+
+                    if (this.y < canvas.height * 0.8) {
+                        this.alpha -= this.fadeSpeed;
+                    }
+
+                    if (this.y < 0 || this.alpha <= 0) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.colorPrefix + this.alpha + ')';
+                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = this.colorPrefix + '0.5)';
+                    ctx.fill();
+                    ctx.shadowBlur = 0; 
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                const p = new Particle();
+                p.y = Math.random() * canvas.height;
+                particles.push(p);
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            animate();
         });
     </script>
 

@@ -5,19 +5,23 @@
     <meta property="og:description" content="Hey! Click to check out my new web profile!">
     <meta property="og:url" content="https://soul.dedyn.io">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#2fb47e">
+    <meta name="theme-color" content="#b4c2be">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soul // Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --accent-purple: #2fb47e;
-            --accent-dim: #249066;
-            --accent-light: #45c992;
-            --text-gray: #a0a0a0;
+            --bg-deep: #0f1012;
+            --card-bg: rgba(24, 25, 28, 0.88);
+            
+            /* High-Contrast Silver/Sage Accent Palette */
+            --accent-main: #b4c2be;   
+            --accent-dim: #7a8a86;    
+            --accent-light: #e6efec;  
+            --accent-warm: #dca368;
+            
+            --text-gray: #a0a5a4;
             --text-white: #ffffff;
         }
 
@@ -37,28 +41,54 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- Ambient Background Canvas --- */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- CARD WRAPPER WITH CLEAN GLOW BORDER --- */
+        .card-wrapper {
+            position: relative;
+            background: #111214;
+            padding: 2px;
+            border-radius: 26px;
+            width: 100%;
+            max-width: 700px;
+            border: 1px solid var(--accent-dim);
+            box-shadow: 0 0 25px rgba(180, 194, 190, 0.12), 0 30px 60px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            z-index: 1;
+        }
+
+        .card-wrapper.loaded {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .container {
             width: 100%;
-            max-width: 700px;
             background: var(--card-bg);
-            border: 1px solid #2a2a2a;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 24px;
             padding: 2.5rem 3rem; 
-            position: relative;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
             display: flex;
             flex-direction: column;
             gap: 1.2rem; 
-        }
-
-        .container.loaded {
-            opacity: 1;
-            transform: translateY(0);
+            position: relative;
+            z-index: 1;
         }
 
         .header-row {
@@ -70,7 +100,7 @@
 
         h1 {
             font-size: 2.2rem;
-            color: var(--accent-purple);
+            color: var(--accent-main);
         }
 
         .nav-link-top {
@@ -81,57 +111,21 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             transition: all 0.3s;
-            border: 1px solid #2a2a2a;
+            border: 1px solid #282b30;
             padding: 8px 16px;
             border-radius: 8px;
         }
 
         .nav-link-top:hover {
-            color: var(--accent-purple);
-            border-color: var(--accent-purple);
-            background: rgba(47, 180, 126, 0.05);
+            color: var(--accent-main);
+            border-color: var(--accent-main);
+            background: rgba(180, 194, 190, 0.05);
         }
 
         .main-text {
             color: var(--text-gray);
             line-height: 1.6;
             font-size: 1.05rem;
-        }
-
-        .inner-footer {
-            margin-top: 0.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #2a2a2a;
-        }
-
-        .section-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--text-white);
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            display: block;
-            letter-spacing: 2px;
-        }
-
-        .languages {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--accent-purple);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .languages span {
-            display: flex;
-            align-items: center;
-        }
-
-        .languages span::before {
-            content: "•";
-            margin-right: 8px;
-            color: var(--accent-dim);
         }
 
         .outer-copyright {
@@ -144,10 +138,15 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             pointer-events: none;
+            z-index: 1;
         }
 
         @media (max-width: 600px) {
             .container { padding: 2rem; }
+            .card-wrapper {
+                margin: 20px;
+                max-width: calc(100% - 40px);
+            }
             .header-row {
                 flex-direction: column;
                 gap: 1rem;
@@ -159,16 +158,22 @@
 </head>
 <body>
 
-    <div class="container" id="mainContainer">
-        <div class="header-row">
-            <h1 id="soulTitle">Uh Oh!</h1>
-            <a href="javascript:history.back()" class="nav-link-top">← Go Back</a>
-        </div>
+    <!-- Floating Particles Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
 
-        <div class="main-text">
-            <p>
-                Looks like I temporarily disabled this page! Come back soon!
-            </p>
+    <!-- Main Card Container -->
+    <div class="card-wrapper" id="mainContainer">
+        <div class="container">
+            <div class="header-row">
+                <h1 id="soulTitle">Uh Oh!</h1>
+                <a href="javascript:history.back()" class="nav-link-top">← Go Back</a>
+            </div>
+
+            <div class="main-text">
+                <p>
+                    Looks like I temporarily disabled this page! Come back soon!
+                </p>
+            </div>
         </div>
     </div>
 
@@ -183,13 +188,90 @@
                 container.classList.add('loaded');
             }, 100);
 
-            const purpleText = document.getElementById('soulTitle');
+            const soulTitle = document.getElementById('soulTitle');
             let brightness = 1;
             setInterval(() => {
                 brightness = brightness === 1 ? 0.8 : 1;
-                purpleText.style.transition = 'opacity 2s ease-in-out';
-                purpleText.style.opacity = brightness;
+                soulTitle.style.transition = 'opacity 2s ease-in-out';
+                soulTitle.style.opacity = brightness;
             }, 2000);
+
+            // --- Floating Particle Background JS ---
+            const canvas = document.getElementById('bgCanvas');
+            const ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const particleCount = 45;
+            const particles = [];
+            
+            const colors = [
+                'rgba(180, 194, 190, ', // Sage Silver Accent
+                'rgba(220, 163, 104, ', // Gold Accent
+                'rgba(255, 255, 255, '  /* Bright White */
+            ];
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height + Math.random() * 100;
+                    this.radius = Math.random() * 2 + 0.5;
+                    this.colorPrefix = colors[Math.floor(Math.random() * colors.length)];
+                    this.alpha = Math.random() * 0.5 + 0.1;
+                    this.speedY = Math.random() * 0.4 + 0.1;
+                    this.speedX = (Math.random() - 0.5) * 0.2;
+                    this.fadeSpeed = Math.random() * 0.003 + 0.001;
+                }
+
+                update() {
+                    this.y -= this.speedY;
+                    this.x += this.speedX;
+
+                    if (this.y < canvas.height * 0.8) {
+                        this.alpha -= this.fadeSpeed;
+                    }
+
+                    if (this.y < 0 || this.alpha <= 0) {
+                        this.reset();
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.colorPrefix + this.alpha + ')';
+                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = this.colorPrefix + '0.5)';
+                    ctx.fill();
+                    ctx.shadowBlur = 0; 
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                const p = new Particle();
+                p.y = Math.random() * canvas.height;
+                particles.push(p);
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            animate();
         });
     </script>
 </body>
