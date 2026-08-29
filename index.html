@@ -40,10 +40,11 @@
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--bg-deep);
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 24px 24px;
+            background-image: url('https://cdn.discordapp.com/attachments/1537855883470446637/1538044518077567006/image.png?ex=6a813f14&is=6a7fed94&hm=e57cb151914cdfc37123bbf5e150ac9f01677eef16c6704197c6c3b6b25e781d&');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: var(--text-white);
             display: flex;
             justify-content: center;
@@ -85,7 +86,11 @@
 
         .container {
             width: 100%;
-            padding: 3rem;
+            background: rgba(24, 25, 28, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 3.2rem 4rem;
             display: grid;
             grid-template-columns: 1.1fr 1.2fr;
             gap: 3.5rem;
@@ -341,10 +346,10 @@
         <div class="container">
             <div class="profile-side">
                 <div class="avatar">
-                    <img src="avatar2026.png" alt="avatar" style="width:100%; height:100%; object-fit: cover;">
+                    <img src="media/avatar.png" alt="avatar" style="width:100%; height:100%; object-fit: cover;">
                 </div>
                 <h1 id="soulTitle">Soul</h1>
-                <div class="status">OSS Lover <3</div>
+                <div class="status">OSS Lover &lt;3</div>
 
                 <p class="description">
                     Hey, I'm Soul! I make cool web scripts, apps, Discord bots, and more! I also love to work with music and starting into sketches / art! If you want to chat or commission a project, feel free to reach out on my socials!
@@ -367,13 +372,13 @@
                         <a href="portfolio" class="animated-btn">
                             <div class="btn-inner">
                                 <span>Portfolio</span>
-                                <span>-></span>
+                                <span>-&gt;</span>
                             </div>
                         </a>
                         <a href="commissions" class="animated-btn">
                             <div class="btn-inner">
                                 <span>Commissions</span>
-                                <span>-></span>
+                                <span>-&gt;</span>
                             </div>
                         </a>
                     </div>
@@ -443,7 +448,7 @@
             
             const colors = [
                 'rgba(180, 194, 190, ',
-                'rgba(189, 147, 249, ',
+                'rgba(220, 163, 104, ',
                 'rgba(255, 255, 255, '
             ];
 
