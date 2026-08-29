@@ -9,20 +9,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soul // About</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #0f1012;
-            --card-bg: #18191c;
+            --bg-deep: #0a0b0d;
+            --card-bg: #141518;
+            --container-bg: #101114;
             
-            /* High-Contrast Silver/Sage Accent */
             --accent-main: #b4c2be;   
-            --accent-dim: #7a8a86;    
+            --accent-dim: #5c6865;    
             --accent-light: #e6efec;  
-            --accent-warm: #dca368;
+            --accent-purple: #bd93f9;
+            --accent-green: #50fa7b;
+            --accent-cyan: #8be9fd;
             
+            --border-color: #26292e;
             --text-gray: #a0a5a4;
             --text-white: #ffffff;
+
+            --brutal-shadow: 4px 4px 0px #000000;
+            --brutal-shadow-lg: 8px 8px 0px #000000;
         }
 
         * {
@@ -34,6 +40,10 @@
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--bg-deep);
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
             color: var(--text-white);
             display: flex;
             justify-content: center;
@@ -44,7 +54,6 @@
             overflow-x: hidden;
         }
 
-        /* --- Ambient Background Canvas --- */
         #bgCanvas {
             position: fixed;
             top: 0;
@@ -55,19 +64,17 @@
             pointer-events: none;
         }
 
-        /* --- CARD WRAPPER WITH CLEAN GLOW BORDER --- */
         .card-wrapper {
             position: relative;
-            background: #111214;
-            padding: 2px; 
-            border-radius: 26px;
+            background: var(--container-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
             width: 100%;
-            max-width: 850px;
-            border: 1px solid var(--accent-dim);
-            box-shadow: 0 0 25px rgba(180, 194, 190, 0.12), 0 30px 60px rgba(0, 0, 0, 0.8);
+            max-width: 900px;
+            box-shadow: var(--brutal-shadow-lg);
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             z-index: 1;
         }
 
@@ -78,14 +85,10 @@
 
         .container {
             width: 100%;
-            background: rgba(24, 25, 28, 0.88); /* Translucency for background particles */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 24px;
-            padding: 3.2rem 4rem;
+            padding: 3rem;
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
+            grid-template-columns: 1.1fr 1.2fr;
+            gap: 3.5rem;
             position: relative;
             z-index: 1; 
         }
@@ -97,37 +100,45 @@
         }
 
         .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #1f2225, #2d3136);
+            width: 110px;
+            height: 110px;
+            border-radius: 8px;
+            background: var(--card-bg);
             margin-bottom: 1.5rem;
-            border: 1px solid var(--accent-dim);
+            border: 2px solid var(--border-color);
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px rgba(180, 194, 190, 0.15);
+            box-shadow: var(--brutal-shadow);
         }
 
         h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent-main);
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 0.2rem;
+            color: var(--text-white);
+            text-transform: uppercase;
         }
 
-        .status {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent-dim);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
+        .status { 
+            font-family: JetBrains Mono, monospace; 
+            font-size: 0.8rem; 
+            font-weight: normal;
+            color: var(--accent-main); 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            margin-bottom: 1.5rem; 
+            background: #090a0c; 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            border: 1px solid rgba(180, 194, 190, 0.2); 
         }
 
         .description {
             color: var(--text-gray);
-            line-height: 1.7;
+            line-height: 1.6;
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
         }
@@ -148,36 +159,48 @@
 
         .section-title {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
+            font-weight: bold;
             color: var(--text-white);
             text-transform: uppercase;
             white-space: nowrap;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .header-line {
             flex-grow: 1;
-            height: 1px;
-            background: #282b30;
+            height: 2px;
+            background: var(--border-color);
         }
 
         .btn-grid {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             width: 100%;
         }
 
-        /* Double-beam rotating effect retained for button hovers */
         .animated-btn {
             position: relative;
-            background: #111214;
-            padding: 1px;
-            border-radius: 12px;
+            background: var(--border-color);
+            padding: 2px;
+            border-radius: 8px;
             text-decoration: none;
             overflow: hidden;
             display: block;
             width: 100%;
+            box-shadow: var(--brutal-shadow);
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+        .animated-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #000000;
+        }
+
+        .animated-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #000000;
         }
 
         .animated-btn::before {
@@ -190,10 +213,10 @@
             background: conic-gradient(
                 from 0deg,
                 transparent 0%,
-                var(--accent-main) 20%,
+                var(--accent-purple) 20%,
                 transparent 40%,
                 transparent 50%,
-                var(--accent-main) 70%,
+                var(--accent-purple) 70%,
                 transparent 90%,
                 transparent 100%
             );
@@ -213,61 +236,65 @@
 
         .btn-inner {
             background: var(--card-bg);
-            padding: 16px 20px;
-            border-radius: 11px;
+            padding: 14px 18px;
+            border-radius: 6px;
             position: relative;
             z-index: 1;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--accent-main);
-            transition: background 0.3s, color 0.3s;
+            color: var(--text-white);
+            font-weight: 600;
+            transition: background 0.2s;
             width: 100%;
         }
 
         .animated-btn:hover .btn-inner {
-            background: #22252a;
-            color: var(--accent-light);
-        }
-
-        .btn-inner span:first-child {
-            flex-grow: 1;
+            background: #1c1e24;
         }
 
         .btn-inner span:last-child {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--accent-dim);
+            font-size: 0.75rem;
+            color: var(--accent-purple);
             text-align: right;
             padding-left: 10px;
         }
 
         .link-row {
             display: flex;
-            gap: 15px;
-            margin-top: 5px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .nav-link {
-            color: var(--text-gray);
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--card-bg);
+            color: var(--accent-main);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 6px;
             text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.3s;
+            font-size: 0.8rem;
+            box-shadow: 2px 2px 0px #000000;
+            transition: transform 0.1s, box-shadow 0.1s, color 0.1s, background 0.1s;
         }
 
         .nav-link:hover {
-            color: var(--accent-main);
+            color: var(--accent-purple);
+            background: #1c1e24;
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #000000;
         }
 
         .footer-copyright {
             position: absolute;
-            bottom: 30px;
+            bottom: 20px;
             width: 100%;
             text-align: center;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
-            color: var(--text-gray);
-            opacity: 0.5;
+            color: var(--accent-dim);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             pointer-events: none;
@@ -276,29 +303,27 @@
 
         @media (max-width: 768px) {
             body {
-                flex-direction: column;
-            }
-
-            .card-wrapper {
-                margin: 20px;
-                max-width: calc(100% - 40px);
+                padding: 10px;
             }
 
             .container {
                 grid-template-columns: 1fr;
-                padding: 2rem;
+                padding: 1.5rem;
                 gap: 2rem;
             }
 
             .profile-side,
             .content-side {
+                align-items: stretch;
+            }
+
+            .profile-side {
                 align-items: center;
                 text-align: center;
             }
 
             .link-row {
                 justify-content: center;
-                flex-wrap: wrap;
             }
 
             .footer-copyright {
@@ -310,24 +335,23 @@
 </head>
 <body>
 
-    <!-- Floating Particles Background Canvas -->
     <canvas id="bgCanvas"></canvas>
 
-    <!-- Main Card Container -->
     <div class="card-wrapper" id="mainContainer">
         <div class="container">
             <div class="profile-side">
                 <div class="avatar">
-                    <img src="avatar.png" alt="avatar" style="width:100%; height:100%; object-fit: cover;">
+                    <img src="avatar2026.png" alt="avatar" style="width:100%; height:100%; object-fit: cover;">
                 </div>
                 <h1 id="soulTitle">Soul</h1>
-                <div class="status">A Chill Developer</div>
+                <div class="status">OSS Lover <3</div>
+
                 <p class="description">
                     Hey, I'm Soul! I make cool web scripts, apps, Discord bots, and more! I also love to work with music and starting into sketches / art! If you want to chat or commission a project, feel free to reach out on my socials!
                 </p>
+                
                 <div class="link-row">
                     <a href="https://github.com/SoulDevOfficial" class="nav-link">GitHub</a>
-                    <a href="https://x.com/S0ulTheDev" class="nav-link">Twitter</a>
                     <a href="https://discord.com/users/1254195552808206429" class="nav-link">Discord</a>
                     <a href="mailto:developing.soulnet@gmail.com" class="nav-link">Email</a>
                 </div>
@@ -376,7 +400,7 @@
                         <a href="https://www.bump4you.com/" class="animated-btn">
                             <div class="btn-inner">
                                 <span>Bump4You</span>
-                                <span>3 / 2023</span>
+                                <span>03 / 2023</span>
                             </div>
                         </a>
                     </div>
@@ -404,7 +428,6 @@
                 soulTitle.style.opacity = brightness;
             }, 2000);
 
-            // --- Floating Particle Background JS ---
             const canvas = document.getElementById('bgCanvas');
             const ctx = canvas.getContext('2d');
 
@@ -419,9 +442,9 @@
             const particles = [];
             
             const colors = [
-                'rgba(180, 194, 190, ', // Sage
-                'rgba(220, 163, 104, ', // Gold Accent
-                'rgba(255, 255, 255, '  /* White */
+                'rgba(180, 194, 190, ',
+                'rgba(189, 147, 249, ',
+                'rgba(255, 255, 255, '
             ];
 
             class Particle {
@@ -482,6 +505,5 @@
             animate();
         });
     </script>
-
 </body>
 </html>
